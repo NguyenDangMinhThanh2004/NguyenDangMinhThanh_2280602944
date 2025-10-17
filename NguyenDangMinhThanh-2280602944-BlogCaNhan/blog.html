@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Nguyễn Đặng Minh Thành</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #0d6efd; /* Blue for strong focus/buttons */
+            --accent-color: #1abc9c; /* Teal for subtle highlight */
+            --text-color: #1f2937; /* Darker text for readability */
+            --muted-text-color: #6b7280; /* Gray for meta info */
+            --bg-color: #f9fafb; /* Light gray background */
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --max-width: 1100px;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        /* Layout */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+        
+        /* Header & Controls */
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted-text-color);
+        }
+
+        .breadcrumb strong {
+            color: var(--text-color);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column; /* Mobile stack */
+            gap: 16px;
+        }
+
+        .search {
+            flex-grow: 1; 
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chips button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--muted-text-color);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chips button.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .chips button:hover:not(.active) {
+            background: #f3f4f6;
+        }
+
+        /* Post Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Tăng minmax để card to hơn */
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card-inner {
+            display: flex;
+            flex-direction: column; /* Thay đổi: Xếp ảnh và nội dung dọc */
+            gap: 16px;
+            padding: 18px; /* Tăng padding để card to hơn */
+        }
+
+        .thumb-wrapper {
+            /* Tăng kích thước ảnh thumbnail cho card lớn hơn */
+            width: 100%; 
+            height: 180px; 
+            flex-shrink: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #eef2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #dbeafe;
+        }
+
+        .thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .25s;
+        }
+        .card:hover .thumb {
+            transform: scale(1.05);
+        }
+        
+        .content {
+            flex-grow: 1;
+        }
+
+        .meta {
+            color: var(--accent-color);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        
+        .title {
+            font-weight: 800; /* Tăng độ đậm */
+            font-size: 20px; /* Tăng kích thước tiêu đề */
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .desc {
+            color: var(--muted-text-color);
+            font-size: 15px;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Cho phép 3 dòng mô tả */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more {
+            font-size: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            color: var(--muted-text-color);
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        /* Responsive adjustments (Desktop) */
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .controls {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+            }
+            .search {
+                max-width: 300px;
+            }
+        }
+        
+        /* Mobile: Quay lại bố cục danh sách dọc 1 cột nếu màn hình nhỏ hơn 400px để card không quá nhỏ */
+        @media(max-width: 400px){
+            .grid{
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="container header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <strong>Blog</strong></div>
+    <div class="controls">
+        <div class="chips">
+            <button data-cat="All" class="chip active">Tất cả</button>
+            <button data-cat="Java" class="chip">Java</button>
+            <button data-cat="JavaScript" class="chip">JavaScript</button>
+        </div>
+        <input id="searchBox" class="search" placeholder="Tìm kiếm...">
+    </div>
+</header>
+
+<main class="container" id="main">
+    <div id="postsGrid" class="grid" data-aos="fade-up"></div>
+    <div class="footer">© 2025 Nguyễn Đặng Minh Thành. All rights reserved.</div>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:700,once:true});
+
+// Original POSTS data (unchanged)
+const POSTS = [{"slug": "java-intro", "title": "Giới thiệu về Java và cấu trúc cơ bản của chương trình", "category": "Java", "excerpt": "Tìm hiểu Java, môi trường phát triển và cách viết chương trình 'Hello World'."}, {"slug": "java-oop", "title": "OOP trong Java – Hiểu rõ 4 tính chất cơ bản", "category": "Java", "excerpt": "Đóng gói, kế thừa, đa hình và trừu tượng — giải thích kèm ví dụ thực tế."}, {"slug": "java-exception", "title": "Xử lý ngoại lệ trong Java: try-catch và custom exception", "category": "Java", "excerpt": "Kỹ thuật bắt và xử lý ngoại lệ để giữ ứng dụng chạy ổn định."}, {"slug": "java-io", "title": "Làm việc với File trong Java – I/O Streams", "category": "Java", "excerpt": "Đọc, ghi file văn bản và nhị phân, sử dụng try-with-resources."}, {"slug": "java-socket", "title": "Lập trình mạng Socket trong Java: Tạo client-server đơn giản", "category": "Java", "excerpt": "Ví dụ TCP server-client giao tiếp, gửi/nhận dữ liệu cơ bản."}, {"slug": "js-dom", "title": "Hiểu DOM và thao tác phần tử HTML bằng JavaScript", "category": "JavaScript", "excerpt": "Chọn phần tử, sự kiện và cập nhật nội dung động trên trang web."}, {"slug": "js-es6", "title": "JavaScript ES6: Các tính năng cần biết", "category": "JavaScript", "excerpt": "let/const, arrow functions, template literals, destructuring và modules."}, {"slug": "js-async", "title": "Async/Await & Promise – Xử lý bất đồng bộ trong JavaScript", "category": "JavaScript", "excerpt": "Cách sử dụng Promise và async/await để quản lý luồng bất đồng bộ."}, {"slug": "js-fetch", "title": "Fetch API: Gọi REST API và xử lý JSON trong JavaScript", "category": "JavaScript", "excerpt": "Sử dụng fetch để lấy dữ liệu từ API và hiển thị trên giao diện."}];
+
+function render(list){
+    const grid = document.getElementById('postsGrid');
+    grid.innerHTML='';
+    list.forEach((p,i)=>{
+        const d=document.createElement('div'); 
+        d.className='card'; 
+        d.setAttribute('data-aos','fade-up');
+        
+        // Dùng ảnh placeholder dynamic cho blog
+        const thumbSrc = `assets/thumb${(i % 5) + 1}.svg`; 
+
+        // Cấu trúc HTML được chỉnh lại cho bố cục dọc mới (ảnh trên, chữ dưới)
+        d.innerHTML = `
+            <div class="card-inner">
+                <div class="thumb-wrapper">
+                    <img class="thumb" src="${thumbSrc}" alt="Thumbnail cho bài viết ${i + 1}">
+                </div>
+                <div class="content">
+                    <div class="meta">${p.category}</div>
+                    <div class="title">${p.title}</div>
+                    <div class="desc">${p.excerpt}</div>
+                    <a class="read-more" href="posts/${p.slug}.html">Xem thêm →</a>
+                </div>
+            </div>
+        `;
+        grid.appendChild(d);
+    });
+}
+function getFiltered(){
+    const q=(document.getElementById('searchBox').value||'').toLowerCase();
+    const active=document.querySelector('.chip.active')?.dataset.cat || 'All';
+    return POSTS.filter(p=>{ if(active!=='All' && p.category!==active) return false; return p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q); });
+}
+document.getElementById('searchBox').addEventListener('input', ()=> render(getFiltered()));
+document.querySelectorAll('.chip').forEach(b=>{ b.addEventListener('click', ()=>{ document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); render(getFiltered()); }); });
+const params = new URLSearchParams(window.location.search);
+if(params.get('q')){ document.getElementById('searchBox').value = params.get('q'); }
+render(POSTS);
+</script>
+</body>
+</html>

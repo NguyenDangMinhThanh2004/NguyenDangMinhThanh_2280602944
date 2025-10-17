@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Nguyễn Đặng Minh Thành</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset/Base */
+        :root {
+            --primary-color: #1a73e8; /* Blue for action */
+            --text-color: #3c4043; /* Dark gray for body text */
+            --secondary-text-color: #70757a; /* Lighter gray for meta info */
+            --bg-color: #f8f9fa; /* Light background */
+            --max-width: 960px;
+            --spacing-lg: 32px;
+            --spacing-md: 24px;
+            --spacing-sm: 16px;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--max-width);
+            margin: var(--spacing-lg) auto;
+            padding: var(--spacing-md);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+        
+        /* Profile Section */
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            width: 100%;
+        }
+
+        .avatar-section {
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%; /* Circle for a modern look */
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bio-info {
+            flex: 1;
+            padding-left: 0; /* Adjusted for responsive design */
+        }
+        
+        h1 {
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 4px;
+            font-size: 1.8rem;
+        }
+
+        .meta {
+            color: var(--secondary-text-color);
+            margin-bottom: var(--spacing-md);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        .contact-links {
+            margin-top: var(--spacing-sm);
+        }
+
+        .contact-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: var(--spacing-sm);
+            transition: background 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: #1555b0; /* Darker blue on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 600px) {
+            .profile-card {
+                flex-direction: row; /* Horizontal layout on larger screens */
+            }
+            .avatar-section {
+                justify-content: flex-start;
+                padding-right: var(--spacing-md);
+            }
+            .bio-info {
+                padding-left: var(--spacing-md);
+            }
+        }
+        
+        @media (max-width: 599px) {
+            .container {
+                margin: var(--spacing-md) auto;
+                padding: var(--spacing-sm);
+            }
+            .profile-card {
+                flex-direction: column; /* Stack vertically on small screens */
+                text-align: center;
+            }
+            .bio-info {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="profile-card">
+        <div class="avatar-section">
+            <img src="assets/avatar.jpg" class="avatar" alt="Ảnh đại diện của Nguyễn Đặng Minh Thành">
+        </div>
+        
+        <div class="bio-info">
+            <h1>Nguyễn Đặng Minh Thành</h1>
+            <p class="meta">Sinh viên Công nghệ Thông tin · MSSV: 2280602944</p>
+            
+            <p>Tôi tạo blog này để ghi chép kiến thức, chia sẻ kinh nghiệm học lập trình, đặc biệt về Java và JavaScript, và lưu lại hành trình phát triển dự án cá nhân.</p>
+            
+            <div class="contact-links">
+                <p>Email: <a href="mailto:Nguyendangminhthanh2021@gmail.com">Nguyendangminhthanh2021@gmail.com</a></p>
+                <p>Facebook: <a href="https://www.facebook.com/nguyen.thanh.398047" target="_blank" rel="noopener noreferrer">facebook.com/nguyen.thanh.398047</a></p>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <a class="btn" href="index.html">Quay lại Trang chủ</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
